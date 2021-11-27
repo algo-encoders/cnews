@@ -16,7 +16,7 @@ class User
     private $subscription_expiry;
     private $join_date;
     public static $current_user;
-    private $profile_picture;
+    private $profile_image;
 
     /**
      * @param $ID
@@ -415,15 +415,15 @@ class User
      */
     public function getProfilePicture()
     {
-        return $this->profile_picture;
+        return $this->profile_image;
     }
 
     /**
-     * @param mixed $profile_picture
+     * @param mixed $profile_image
      */
-    public function setProfilePicture($profile_picture): void
+    public function setProfilePicture($profile_image): void
     {
-        $this->profile_picture = $profile_picture;
+        $this->profile_image = $profile_image;
     }
 
 

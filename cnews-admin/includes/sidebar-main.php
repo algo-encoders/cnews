@@ -15,7 +15,7 @@
     <nav id="sidebar">
         <!-- Sidebar Header-->
         <div class="sidebar-header d-flex align-items-center">
-            <div class="avatar"><img src="<?php echo home_url(); ?>/img/avatar-6.jpg" alt="..." class="img-fluid rounded-circle"></div>
+            <div class="avatar"><img src="<?php echo home_url().$current_user->getProfilePicture(); ?>" alt="..." class="img-fluid rounded-circle"></div>
             <div class="title">
                 <h1 class="h5"><?php echo $current_user->getDisplayName(); ?></h1>
                 <p><?php echo $current_user->getUserType(); ?></p>
@@ -53,9 +53,9 @@
                 </a>
             </li class="<?php echo $current_route == 'settings' ? 'text-primary' : ''; ?>">
             <li>
-                <a href="/settings">
-                    <i class="icon-settings"></i>
-                    Settings
+                <a href="/payments">
+                    <i class="icon-bill"></i>
+                    Payments
                 </a>
             </li>
         </ul>

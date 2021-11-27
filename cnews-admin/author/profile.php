@@ -15,8 +15,6 @@ $posted_user = array();
 $is_edit = false;
 if($edit_user){
    $is_edit = true;
-}else{
-    die('<div style="text-align: center;">You are not allowed to access this page</div>');
 }
 
 $posted_user = MDB()->queryFirstRow("SELECT * FROM users WHERE ID = %i", $edit_user);

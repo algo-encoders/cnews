@@ -136,12 +136,15 @@ global $current_route;
                         <!-- navbar nav -->
                     </div>
 
-                        <?php if(is_logged_in()): ?>
+                        <?php if(is_logged_in()):
+
+                            $current_user = User::get_logged_in_user();
+                            ?>
 
                         <ul class="navbar-nav ml-auto cnews_user">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="40" height="40" class="rounded-circle">
+                                    <img src="<?php echo $current_user->getProfilePicture(); ?>" width="40" height="40" class="rounded-circle">
                                 </a>
                                 <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
                                     <a class="dropdown-item" href="/admin">Dashboard</a>
