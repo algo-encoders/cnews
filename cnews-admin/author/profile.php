@@ -47,7 +47,7 @@ cnews_admin_header_add();
 
                             <?php CNotices::print_notices(); ?>
                             <br>
-                            <form class="text-left form-validate" method="post">
+                            <form class="text-left form-validate" method="post" enctype="multipart/form-data">
 
                                 <?php
                                 cnews_nonce_field('cnews_nonce', 'cnews_nonce_action');
@@ -94,6 +94,34 @@ cnews_admin_header_add();
                                         <option value="Reader" <?php echo cnews_get_value('user_type', $posted_user) == 'Reader' ? 'selected' : ''; ?>>Reader</option>
                                         <option value="Both" <?php echo cnews_get_value('user_type', $posted_user) == 'Both' ? 'selected' : ''; ?>>Reader & Author</option>
                                     </select>
+
+                                </div>
+
+                                <hr>
+
+                                <div class="form-group row">
+                                    
+                                    <div class="col-6">
+                                        <label class="form-control-label">User Profile Image</label>
+                                        <input type="file" id="filer_input" name="user_profile_image" class="form-control">
+                                    </div>
+                                    
+                                    <div class="col-6 profile_image">
+                                        <?php
+
+                                        $profile_image =  cnews_get_value('profile_image', $posted_user);
+                                        if($profile_image){
+                                            $profile_image = home_url().$profile_image;
+                                        }else{
+                                            $profile_image = cnews_placeholder_image();
+                                        }
+
+                                        ?>
+
+                                        <img class="featured_image" src="<?php echo $profile_image; ?>" alt="" style="width: 100px; height: 100px;">
+
+                                    </div>
+                                   
 
                                 </div>
 

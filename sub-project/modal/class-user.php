@@ -507,6 +507,60 @@ class User
         return false;
     }
 
+    public static function upload_profile_image($user_id){
+
+        $profile_image = isset($_FILES['user_profile_image']) && !empty($_FILES['user_profile_image']) ? $_FILES['user_profile_image'] : array();
+        $profile_image_path = '';
+
+
+
+        if(!empty($profile_image) && $profile_image['tmp_name']){
+
+
+            $imgfile = $profile_image["name"];
+            $img_size = $profile_image["size"];
+            $ext = pathinfo($imgfile, PATHINFO_EXTENSION);
+
+            if($img_size <= 5000000){
+
+                $extension = substr($imgfile,strlen($imgfile)-4,strlen($imgfile));
+                $allowed_extensions = array(".jpg","jpeg",".png",".gif");
+
+                if(!in_array($extension,$allowed_extensions))
+                {
+                    CNotices::add_notice('invalid_featured_image', 'warning');
+
+                }else{
+
+                    $profile_image_name = 'profile-'.$user_id.'.'.$ext;
+                    $file_sub_path = "/uploads/profile-images/";
+                    $profile_image_new = $file_sub_path.$profile_image_name;
+                    $home_dir = CNEWS_DIR;
+                    $image_absolute_path = $home_dir.$profile_image_new;
+
+                    if(file_exists($image_absolute_path)){
+                        unlink($image_absolute_path);
+                    }
+                    move_uploaded_file($profile_image["tmp_name"], $image_absolute_path);
+                    if(file_exists($image_absolute_path)){
+                        $profile_image_path = $profile_image_new;
+                    }
+
+                }
+
+            }else{
+
+                CNotices::add_notice('greater_size', 'warning');
+
+            }
+        }
+
+
+
+        return $profile_image_path;
+
+    }
+
     public static function update_profile(){
 
         if(self::is_user_logged_in()){
@@ -523,6 +577,8 @@ class User
                         'c_password' => '',
                     ];
 
+
+
                     $cnews_user = isset($_POST['cnews_user']) && !empty($_POST['cnews_user']) ? $_POST['cnews_user'] : array();
 
                     if(!empty($cnews_user)){
@@ -531,6 +587,11 @@ class User
                         $pwd_data = array_intersect_key($cnews_user, $skip_array);
 
                         if(!empty($user_data) && isset($user_data['ID'])){
+
+                            $profile_image = self::upload_profile_image($user_data['ID']);
+                            if($profile_image){
+                                $user_data['profile_image'] = $profile_image;
+                            }
                             $result = MDB()->update('users', $user_data, 'ID=%i', $user_data['ID']);
 
                             if($result && !empty($pwd_data) && !empty($pwd_data['password'])){

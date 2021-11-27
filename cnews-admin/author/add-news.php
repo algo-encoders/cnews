@@ -138,6 +138,7 @@ $is_edit = CNotices::get_is_news_edit();
                                             ?>
 
                                             <img class="featured_image" src="<?php echo $featured_image; ?>" alt="" style="width: 250px; height: auto;">
+
                                         </div>
 
                                     </div>
