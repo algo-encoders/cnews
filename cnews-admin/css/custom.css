@@ -1,0 +1,19 @@
+/* your styles go here */
+
+@font-face {
+    font-family:changa ;
+    src: url(changavariable.ttf);
+}
+
+.navbar-brand img{
+    width: 70px;
+}
+
+.navbar-brand{
+    font-family: changa;
+    color: white;
+}
+
+.navbar-brand .brand-text{
+    color: white;
+}

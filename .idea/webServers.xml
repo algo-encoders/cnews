@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="23c04eca-2d92-4725-972a-1e98757625e0" name="cnews">
+        <fileTransfer accessType="SFTP" host="69.163.224.105" port="22" sshConfigId="2e3994d4-28d0-4d36-bafe-166e0fb8e465" sshConfig="dh_vi5dqs@69.163.224.105:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="0f286a33-31d4-4ef4-891a-a2fbbfb07f07" name="dev_cnews" url="http://194.233.70.54">
+        <fileTransfer host="194.233.70.54" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

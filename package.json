@@ -1,0 +1,11 @@
+{
+  "name": "cnews",
+  "version": "1.0.0",
+  "description": "Curated News is a new way to consume information media. With so much available content, people need help sifting through it. That's where Curated News comes in. Many news aggregation platforms suffer from machine learning algorithms that tailor your news to your predisposition, leaving you outraged by manipulation when it gets it wrong and desensitized when it gets it right. Welcome to the only news platform that gives you tools to strengthen your consumption habits. ### Available as a mobile application here:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
