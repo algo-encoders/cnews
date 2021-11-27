@@ -47,7 +47,7 @@
             <?php endif; ?>
 
             <li class="<?php echo $current_route == 'profile' ? 'text-primary' : ''; ?>">
-                <a href="/profile ?>">
+                <a href="/profile">
                     <i class="icon-user"></i>
                     Profile
                 </a>

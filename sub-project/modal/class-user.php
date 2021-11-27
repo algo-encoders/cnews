@@ -101,6 +101,10 @@ class User
 
     }
 
+    public static function password_hash($password){
+        return password_hash($password, PASSWORD_BCRYPT);;
+    }
+
     public static function update_user($user_data){
 
         $new_user = new User();
@@ -526,25 +530,39 @@ class User
                         $user_data = array_diff_key($cnews_user, $skip_array);
                         $pwd_data = array_intersect_key($cnews_user, $skip_array);
 
-                        pree($user_data);
-                        pree($pwd_data);
+                        if(!empty($user_data) && isset($user_data['ID'])){
+                            $result = MDB()->update('users', $user_data, 'ID=%i', $user_data['ID']);
 
+                            if($result && !empty($pwd_data) && !empty($pwd_data['password'])){
 
-                        exit;
+                                $password_hash = self::password_hash($pwd_data['password']);
+                                $password_update = ['ID' => $user_data['ID'], 'password' => $password_hash];
 
+                                $result_pwd = MDB()->update('users', $password_update, 'ID=%i', $password_update['ID']);
+
+                                var_dump($result_pwd);
+
+                            }
+
+                            if($result){
+                                CNotices::add_notice("profile_updated_success", "success");
+                            }else{
+                                CNotices::add_notice("profile_update_error", "error");
+                            }
+
+                        }else{
+                            CNotices::add_notice('no_data_found', 'error');
+                        }
 
                     }else{
                         CNotices::add_notice('no_data_found', 'error');
                     }
-
-
                 }
             }
 
         }else{
             echo CNotices::get_message_string('not_authorized');
         }
-
 
     }
 

@@ -42,6 +42,11 @@ class CNotices
         'cat_already_exists' => 'Category already exists with same title please chose different title',
         'sub_cats_success' => 'Sub categories fetched successfully',
 
+//        User Profile Update
+
+        'profile_update_error' => "There is some issue to update your profile please try again",
+        'profile_updated_success' => "Profile updated",
+
     );
 
     public static $active_notices = array();
