@@ -78,6 +78,7 @@ get('/termsandconditions', 'termsandconditions.php');
 
 get('/add-news', 'cnews-admin/author/add-news.php');
 post('/add-news', 'cnews-admin/author/add-news.php');
+get('/buy-subscription', 'cnews-admin/author/buy-subscription.php');
 
 
 get('/categories', 'cnews-admin/author/category.php');
@@ -86,6 +87,9 @@ post('/categories', 'cnews-admin/author/category.php');
 get('/news-list', 'cnews-admin/author/news-list.php');
 get('/profile', 'cnews-admin/author/profile.php');
 post('/profile', 'cnews-admin/author/profile.php');
+
+get('/payments', 'cnews-admin/author/payments.php');
+post('/payments', 'cnews-admin/author/payments.php');
 
 
 get('/news-reader', 'sub-project/view/reader.php');

@@ -17,3 +17,19 @@
 .navbar-brand .brand-text{
     color: white;
 }
+.pay-pal-btn img.btn{
+    width: 200px;
+    cursor: pointer;
+}
+
+.pay-pal-btn img:not(.btn) {
+    width: 200px;
+}
+.pay-pal-btn button{
+    padding: 0;
+    background: transparent;
+    border: none;
+}
+
+.pay-pal-btn img.btn { transition: all .5s ease-in-out; }
+.pay-pal-btn img.btn:hover { transform: scale(1.1); }
