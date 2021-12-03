@@ -77,6 +77,23 @@ class User
 
     }
 
+    public static function get_prices($user_type = false){
+
+
+        $price_data =  [
+            'reader' => 15,
+            'author' => 25,
+            'both' => 30,
+        ];
+
+        if(!$user_type){
+            return $price_data;
+        }else{
+            $user_type = strtolower($user_type);
+            return array_key_exists($user_type, $price_data) ? $price_data[$user_type] : false;
+        }
+    }
+
     public static function logout_user(){
         session_unset();
         session_destroy();
@@ -95,6 +112,17 @@ class User
         if(self::is_user_logged_in()){
             return $_SESSION['user'];
         }
+    }
+
+    public static function get_user($user_id = 0){
+        if($user_id == 0 && self::is_user_logged_in()){
+            $user_id = self::get_current_user_id();
+        }else{
+            return false;
+        }
+
+        return MDB()->queryFirstRow("SELECT * FROM users WHERE ID=%i", $user_id);
+
     }
 
     public  function set_user_data(){

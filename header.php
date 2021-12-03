@@ -25,7 +25,14 @@ global $current_route;
 
 
 
+
     <?php
+
+    if($current_route == 'pricing'){
+     ?>
+        <link href="<?php echo home_url(); ?>/static/css/main.min.css" rel="stylesheet" type="text/css" />
+        <?php
+    }
 
 
     if($current_route != 'curated-regions'){

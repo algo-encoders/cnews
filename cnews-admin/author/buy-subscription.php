@@ -3,6 +3,11 @@
 use \CNEWS\News;
 use \CNEWS\Category;
 use \CNEWS\CNotices;
+use \CNEWS\User;
+
+
+$posted_user = User::get_user();
+
 
 cnews_admin_header_add();
 News::post_news();
@@ -48,7 +53,12 @@ $is_edit = CNotices::get_is_news_edit();
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="form-control-label">Type</label>
-                                                <input value="" type="text"  class="form-control" disabled="disabled">
+
+                                                <select id="user-type" name="cnews_subscription[years]" required data-msg="Please select user type" class="sub-user-type custom-select">
+                                                    <option value="Author|<?php echo User::get_prices($posted_user['Author']); ?>" <?php echo cnews_get_value('user_type', $posted_user) == 'Author' ? 'selected' : ''; ?>>Author</option>
+                                                    <option value="Reader|<?php echo User::get_prices($posted_user['Reader']); ?>" <?php echo cnews_get_value('user_type', $posted_user) == 'Reader' ? 'selected' : ''; ?>>Reader</option>
+                                                    <option value="Both|<?php echo User::get_prices($posted_user['Both']); ?>" <?php echo cnews_get_value('user_type', $posted_user) == 'Both' ? 'selected' : ''; ?>>Reader & Author</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -57,7 +67,7 @@ $is_edit = CNotices::get_is_news_edit();
                                         <div class="col-5">
                                             <div class="form-group">
                                                 <label class="form-control-label">Duration</label>
-                                                <input value="1" type="number" min="1" step="1" name="cnews_subscription[years]"   class="form-control">
+                                                <input value="1" type="number" min="1" step="1" name="cnews_subscription[years]" class="sub-years form-control">
                                             </div>
                                         </div>
                                         <div class="col-1 d-flex align-items-end">
@@ -66,14 +76,24 @@ $is_edit = CNotices::get_is_news_edit();
                                     </div>
 
                                     <div class="row">
+                                        <div class="col-1 d-flex align-items-end">
+                                            <span class="year-text mb-3">$</span>
+                                        </div>
                                         <div class="col-5">
                                             <div class="form-group">
                                                 <label class="form-control-label">Total Amount Payable</label>
-                                                <input value="15" type="text" disabled="disabled" class="form-control">
+                                                <input value="<?php echo User::get_prices($posted_user['user_type']); ?> " type="text" disabled="disabled" class="sub-amount form-control">
                                             </div>
                                         </div>
-                                        <div class="col-1 d-flex align-items-end">
-                                            <span class="year-text mb-3">USD</span>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="alert alert-info">
+                                                <h5>After Purchase:</h5>
+                                                Your subscription will expire on <span class="sub-date"><?php echo date('Y-m-d', strtotime("+364 Days", strtotime($posted_user['subscription_expiry']))); ?></span>
+                                            </div>
                                         </div>
                                     </div>
 
