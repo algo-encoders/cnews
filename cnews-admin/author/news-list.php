@@ -5,6 +5,14 @@ use  \CNEWS\User;
 use \CNEWS\CNotices;
 use \CNEWS\CError;
 
+User::check_subscription();
+if(User::current_user_can('Author')){
+
+}else{
+    header('Location: '.'/login');
+    exit;
+}
+
 cnews_admin_header_add();
 
 $current_user_id = User::get_current_user_id();

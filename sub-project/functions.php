@@ -11,6 +11,7 @@ require_once('modal/CError.php');
 
 require_once('modal/class-news.php');
 require_once('modal/class-category.php');
+require_once('modal/class-payments.php');
 
 
 
@@ -191,7 +192,20 @@ if(!function_exists('cnews_placeholder_image')){
     }
 }
 
+if(!function_exists('paypal_configurations')){
+    function paypal_configurations(){
 
+        $is_sandbox = true;
+
+        return [
+            'email' => 'sb-yc433v8837353@business.example.com',
+            'return_url' => home_url('/payments?payment_success=true'),
+            'cancel_url' => home_url('/payments?payment_cancel=true'),
+            'notify_url' => home_url('/payment-confirm'),
+            'paypal_url' => $is_sandbox ? 'https://www.sandbox.paypal.com/cgi-bin/webscr' : 'https://www.paypal.com/cgi-bin/webscr',
+        ];
+    }
+}
 
 
 //echo password_hash('test', PASSWORD_BCRYPT); exit;

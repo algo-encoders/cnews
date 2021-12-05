@@ -9,7 +9,28 @@ cnews_header();
     <!--====== MAIN PART START ======-->
     <main>
         <!--======  Curated News platform START ======-->
+
+
         <section id="News_platform">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <?php
+
+                        if(isset($_GET['pricing_status'])){
+                            ?>
+                            <div class="alert alert-info">
+                                Please purchase a plan to access protected content.
+                            </div>
+                            <?php
+                        }
+
+                        ?>
+                    </div>
+                </div>
+            </div>
+
 
             <!-- pricing table  -->
             <section id="pricing-tables">
@@ -23,7 +44,7 @@ cnews_header();
                                     <p>plan for Reader Only</p>
                                     <h4 class="plan-price">$15<span>/year</span></h4>
                                 </div>
-                                <a href="/signup?user_type=Reader" class="plan-submit hvr-bounce-to-right">Subscribe Now</a>
+                                <a href="<?php echo User::get_payment_url('Reader'); ?>" class="plan-submit hvr-bounce-to-right">Subscribe Now</a>
                             </div>
                         </div>
 
@@ -35,7 +56,7 @@ cnews_header();
                                     <p>plan for Author Only</p>
                                     <h4 class="plan-price">$25<span>/year</span></h4>
                                 </div>
-                                <a href="/signup?user_type=Author" class="plan-submit hvr-bounce-to-right">Subscribe Now</a>
+                                <a href="<?php echo User::get_payment_url('Author'); ?>" class="plan-submit hvr-bounce-to-right">Subscribe Now</a>
                             </div>
                         </div>
 <!--
@@ -56,7 +77,7 @@ cnews_header();
                                     <p>plan for both Author & Reader</p>
                                     <h4 class="plan-price">$30<span>/year</span></h4>
                                 </div>
-                                <a href="/signup?user_type=Both" class="plan-submit hvr-bounce-to-right">Subscribe Now</a>
+                                <a href="<?php echo User::get_payment_url('Both'); ?>" class="plan-submit hvr-bounce-to-right">Subscribe Now</a>
                             </div>
                         </div>
 
@@ -65,7 +86,7 @@ cnews_header();
                 </div>
             </section>
 
-            <section id="comparison" class="section container text-center">
+            <section id="comparison" class="d-none cnews-pricing-details section container text-center">
                 <h2 class="pb-8 text-left font-semibold text-interactive-04 leading-snug text-2.5xl sm:text-ds-h2">What are you getting for your money?</h2>
                 <ul class="list-none flex-wrap flex p-0 mb-10">
                     <li class="flex mb-2 mr-5" style="width: 30%; color: white;">

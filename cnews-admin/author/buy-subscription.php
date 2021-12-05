@@ -4,18 +4,13 @@ use \CNEWS\News;
 use \CNEWS\Category;
 use \CNEWS\CNotices;
 use \CNEWS\User;
+use \CNEWS\Payments;
 
 
 $posted_user = User::get_user();
 
-
+Payments::post_payment();
 cnews_admin_header_add();
-News::post_news();
-
-News::news_get_action();
-
-$posted_news = CNotices::get_news_posted();
-$is_edit = CNotices::get_is_news_edit();
 
 
 ?>
@@ -54,10 +49,10 @@ $is_edit = CNotices::get_is_news_edit();
                                             <div class="form-group">
                                                 <label class="form-control-label">Type</label>
 
-                                                <select id="user-type" name="cnews_subscription[years]" required data-msg="Please select user type" class="sub-user-type custom-select">
-                                                    <option value="Author|<?php echo User::get_prices($posted_user['Author']); ?>" <?php echo cnews_get_value('user_type', $posted_user) == 'Author' ? 'selected' : ''; ?>>Author</option>
-                                                    <option value="Reader|<?php echo User::get_prices($posted_user['Reader']); ?>" <?php echo cnews_get_value('user_type', $posted_user) == 'Reader' ? 'selected' : ''; ?>>Reader</option>
-                                                    <option value="Both|<?php echo User::get_prices($posted_user['Both']); ?>" <?php echo cnews_get_value('user_type', $posted_user) == 'Both' ? 'selected' : ''; ?>>Reader & Author</option>
+                                                <select id="user-type" name="cnews_subscription[type]" required data-msg="Please select user type" class="sub-user-type custom-select">
+                                                    <option value="Author|<?php echo User::get_prices('Author'); ?>" <?php echo cnews_get_value('user_type', $posted_user) == 'Author' ? 'selected' : ''; ?>>Author</option>
+                                                    <option value="Reader|<?php echo User::get_prices('Reader'); ?>" <?php echo cnews_get_value('user_type', $posted_user) == 'Reader' ? 'selected' : ''; ?>>Reader</option>
+                                                    <option value="Both|<?php echo User::get_prices('Both'); ?>" <?php echo cnews_get_value('user_type', $posted_user) == 'Both' ? 'selected' : ''; ?>>Reader & Author</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -67,7 +62,7 @@ $is_edit = CNotices::get_is_news_edit();
                                         <div class="col-5">
                                             <div class="form-group">
                                                 <label class="form-control-label">Duration</label>
-                                                <input value="1" type="number" min="1" step="1" name="cnews_subscription[years]" class="sub-years form-control">
+                                                <input value="1" type="number" min="1" step="1" max="5" name="cnews_subscription[years]" class="sub-years form-control">
                                             </div>
                                         </div>
                                         <div class="col-1 d-flex align-items-end">
@@ -75,32 +70,56 @@ $is_edit = CNotices::get_is_news_edit();
                                         </div>
                                     </div>
 
-                                    <div class="row">
-                                        <div class="col-1 d-flex align-items-end">
-                                            <span class="year-text mb-3">$</span>
-                                        </div>
-                                        <div class="col-5">
-                                            <div class="form-group">
-                                                <label class="form-control-label">Total Amount Payable</label>
-                                                <input value="<?php echo User::get_prices($posted_user['user_type']); ?> " type="text" disabled="disabled" class="sub-amount form-control">
-                                            </div>
-                                        </div>
-
-                                    </div>
 
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="alert alert-info">
                                                 <h5>After Purchase:</h5>
-                                                Your subscription will expire on <span class="sub-date"><?php echo date('Y-m-d', strtotime("+364 Days", strtotime($posted_user['subscription_expiry']))); ?></span>
+                                                <p>
+                                                    Your subscription will expire on
+                                                    <span class="sub-date">
+                                                        <?php
+                                                            $expiry = $posted_user['subscription_expiry'] ? strtotime($posted_user['subscription_expiry']) : time();
+                                                        ?>
+                                                        <span data-year="<?php echo date('Y', $expiry); ?>">
+                                                            <?php echo date('Y', strtotime("+364 Days", $expiry)); ?>
+                                                        </span>-<?php echo date('m-d', strtotime("+364 Days", $expiry)); ?>
+                                                    </span>
+                                                </p>
+
+                                                <h5 class="mt-3">Overview:</h5>
+
+                                                <div class="row mt-2">
+                                                    <div class="col-md-6"><strong>Per Year Price:</strong></div>
+                                                    <div class="col-md-6 sub-per-year">$<?php echo User::get_prices(cnews_get_value('user_type', $posted_user)); ?></div>
+                                                </div>
+
+                                                <div class="row mt-2">
+                                                    <div class="col-md-6"><strong>Total Amount Payable:</strong></div>
+                                                    <div class="col-md-6 sub-amount">$<?php echo User::get_prices(cnews_get_value('user_type', $posted_user)); ?></div>
+                                                </div>
+
+
                                             </div>
                                         </div>
                                     </div>
 
+
+                                    <input type="hidden" name="data[cmd]" value="_xclick-subscriptions" />
+                                    <input type="hidden" name="data[no_note]" value="1" />
+                                    <input type="hidden" name="data[no_shipping]" value="1" />
+                                    <input type="hidden" name="data[image_url]" value="<?php echo home_url('/static/images/logo-paypal.png'); ?>" />
+                                    <input type="hidden" name="data[lc]" value="USA" />
+                                    <input type="hidden" name="data[bn]" value="PP-BuyNowBF:btn_buynow_LG.gif:NonHostedGuest" />
+                                    <input type="hidden" name="data[first_name]" value="<?php echo $posted_user['first_name']; ?>" />
+                                    <input type="hidden" name="data[last_name]" value="<?php echo $posted_user['last_name']; ?>" />
+                                    <input type="hidden" name="data[payer_email]" value="<?php echo $posted_user['email']; ?>" />
+                                    <input type="hidden" name="data[item_number]" value="<?php echo $posted_user['user_type'].'|'.$posted_user['ID']; ?>" / >
+
                                     <div class="row">
                                         <div class="col-md-5 pay-pal-btn">
 
-                                            <button type="submit" title="Pay With PayPal"><img class="btn" src="<?php echo admin_dir_url("/img/paypal btn.png") ?>" alt=""></button>
+                                            <button type="submit" name="pay_with_paypal" title="Pay With PayPal"><img class="btn" src="<?php echo admin_dir_url("/img/paypal btn.png") ?>" alt=""></button>
                                             <br>
                                             <img src="<?php echo admin_dir_url("/img/paypal-down.png") ?>" alt="">
                                         </div>
@@ -117,27 +136,6 @@ $is_edit = CNotices::get_is_news_edit();
 
             </div>
         </section>
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Terms and Conditions</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    You have to agree all terms and conditions
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Disagree</button>
-                    <button type="button" class="btn btn-primary c_news_accept_terms">Agree</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
 <?php cnews_admin_footer(); ?>

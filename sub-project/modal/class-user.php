@@ -39,6 +39,39 @@ class User
 
     }
 
+    public static function get_payment_url($user_type = ''){
+        if(self::is_user_logged_in()){
+            return '/buy-subscription';
+        }else{
+            $query = $user_type ? "?user_type=$user_type" : '';
+            return '/signup'.$query;
+        }
+    }
+
+    public static function check_subscription(){
+        if(!self::is_user_logged_in()){
+            header('Location: '.'/login');
+            exit;
+        }else{
+
+            $current_user = self::get_user();
+            $sub_expiry = $current_user['subscription_expiry'];
+            $expire_status = true;
+            if($sub_expiry){
+                $expire_time = strtotime($sub_expiry);
+
+                if(time() <= $expire_time){
+                    $expire_status = false;
+                }
+            }
+
+            if($expire_status){
+                header('Location: '.'/pricing?pricing_status=true');
+                exit();
+            }
+        }
+    }
+
     private function set_user($user_data){
 
         if(!empty($user_data) && is_array($user_data)){
@@ -146,8 +179,8 @@ class User
         $new_user->setUserType(cnews_get_value('user_type', $user_data));
         $new_user->setIsActive(true);
         $current_time = strtotime('+1 month');
-        $new_user->setSubscriptionExpiry(cnews_db_time_stamp($current_time));
-        $new_user->setSubscriptionStatus(true);
+//        $new_user->setSubscriptionExpiry(null);
+//        $new_user->setSubscriptionStatus(false);
         $new_user->setJoinDate(cnews_db_time_stamp(time()));
         $status = $new_user->update_db();
 
@@ -177,8 +210,8 @@ class User
 
         if(empty($by_email) && empty($by_user_name)){
 
-            $query = "INSERT INTO `users` (`ID`,`first_name`,`last_name`,`user_name`,`email`,`password`,`user_type`,`is_active`,`subscription_status`,`subscription_expiry`,`join_date`)
-                VALUES (NULL, %s, %s, %s, %s, %s, %s, %i, %i, %s, %s)";
+            $query = "INSERT INTO `users` (`ID`,`first_name`,`last_name`,`user_name`,`email`,`password`,`user_type`,`is_active`,`join_date`)
+                VALUES (NULL, %s, %s, %s, %s, %s, %s, %i, %s)";
 
             $result = MDB()->query($query, $this->getFirstName(), $this->getLastName(), $this->getUserName(),
                 $this->getEmail(), $this->getPassword(), $this->getUserType(), $this->getIsActive(), $this->getSubscriptionStatus(), $this->getSubscriptionExpiry(), $this->getJoinDate());
@@ -207,7 +240,7 @@ class User
     private function update_user_db(){
 
         $query = "UPDATE `users` set `first_name` = %s,`last_name` = %s,`user_name` = %s,`email` = %s,
-                   `password` = %s,`user_type` = %s,`is_active` = %i, `subscription_status` = %i,`subscription_expiry` = %s,
+                   `password` = %s,`user_type` = %s,`is_active` = %i,
                    `join_date` = %s WHERE ID = %i";
 
         $result = MDB()->query($query, $this->getFirstName(), $this->getLastName(), $this->getUserName(),
@@ -443,7 +476,12 @@ class User
      */
     public function getProfilePicture()
     {
-        return $this->profile_image;
+        if($this->profile_image){
+            return $this->profile_image;
+        }else{
+            return '/cnews-admin/img/placeholder.png';
+        }
+
     }
 
     /**

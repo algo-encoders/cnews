@@ -9,6 +9,15 @@ cnews_admin_header_add();
 
 $current_user_id = User::get_current_user_id();
 
+if(isset($_GET['payment_cancel'])){
+    CNotices::add_notice('payment_cancel', 'error');
+}else if(isset($_GET['payment_success'])){
+    CNotices::add_notice('payment_success', 'success');
+}
+
+
+
+
 ?>
 
         <!-- Page Header-->
@@ -33,7 +42,7 @@ $current_user_id = User::get_current_user_id();
                         <div class="block margin-bottom-sm">
                             <div class="title"><strong>Payments History</strong></div>
 
-                            <div class="row">
+                            <div class="row mb-3">
                                 <div class="col-md-12">
                                     <?php CNotices::print_notices(); ?>
                                 </div>
@@ -46,13 +55,41 @@ $current_user_id = User::get_current_user_id();
                                     <tr>
                                         <th>#</th>
                                         <th>Payment ID</th>
-                                        <th>Amount</th>
-                                        <th>Payment Date</th>
                                         <th>Payment For</th>
-                                        <th>Remarks</th>
+                                        <th>Payment Date</th>
+                                        <th>Subscription Expiry</th>
+                                        <th>Purchased Year</th>
+                                        <th>Amount</th>
                                     </tr>
                                     </thead>
                                     <tbody>
+
+                                    <?php
+                                        $payment_history = MDB()->query("SELECT * FROM payments where user_id=%i", User::get_current_user_id());
+
+                                        if(!empty($payment_history)){
+                                            foreach($payment_history as $index => $history):
+
+                                                ?>
+
+                                                <tr>
+                                                    <th><?php echo $index + 1; ?></th>
+                                                    <th><?php echo cnews_get_value('txnid', $history) ?></th>
+                                                    <th><?php echo cnews_get_value('payment_title', $history) ?></th>
+                                                    <th><?php echo date('Y-m-d', strtotime(cnews_get_value('payment_date', $history))) ?></th>
+                                                    <th><?php echo date('Y-m-d', strtotime(cnews_get_value('expiry_date', $history))) ?></th>
+                                                    <th><?php echo cnews_get_value('years', $history) ?></th>
+                                                    <th>$<?php echo cnews_get_value('paid_amount', $history) ?></th>
+                                                </tr>
+
+
+
+                                            <?php
+                                                endforeach;
+
+                                        }
+                                    ?>
+
 
                                     </tbody>
                                 </table>

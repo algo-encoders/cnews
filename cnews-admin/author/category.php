@@ -2,6 +2,15 @@
 
 use \CNEWS\Category;
 use \CNEWS\CNotices;
+use \CNEWS\User;
+
+User::check_subscription();
+if(User::current_user_can('Author')){
+
+}else{
+    header('Location: '.'/login');
+    exit;
+}
 
 cnews_admin_header_add();
 
@@ -46,7 +55,7 @@ if(!empty($cat_list)){
         <!-- Page Header-->
         <div class="page-header no-margin-bottom">
             <div class="container-fluid">
-                <h2 class="h5 no-margin-bottom">Add News</h2>
+                <h2 class="h5 no-margin-bottom">Categories</h2>
             </div>
         </div>
 

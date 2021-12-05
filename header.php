@@ -28,7 +28,7 @@ global $current_route;
 
     <?php
 
-    if($current_route == 'pricing'){
+    if($current_route == 'pricing' && false){
      ?>
         <link href="<?php echo home_url(); ?>/static/css/main.min.css" rel="stylesheet" type="text/css" />
         <?php
@@ -159,7 +159,7 @@ global $current_route;
                                     <?php
 
 
-                                        if(User::current_user_can('reader')){
+                                        if(User::current_user_can('author')){
                                             ?>
                                             <a class="dropdown-item" href="/add-news">Add News</a>
                                             <a class="dropdown-item" href="/news-list">News List</a>

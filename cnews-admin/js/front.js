@@ -259,7 +259,27 @@ $(function () {
 
 //    add subs
 
-    // if($('.'))
+    if($('.sub-user-type').length > 0){
+        $('.sub-user-type').on('change', function(){
+           let selected_value = $(this).val();
+           selected_value = selected_value.split("|");
+           let selected_price = selected_value[1];
+           let add_year = $('.sub-years').val();
+           let new_price = add_year * selected_price;
+           let sub_amount = $('.sub-amount');
+           $('.sub-per-year').text('$'+selected_price);
+           sub_amount.text('$'+new_price);
+           let current_year = $('.sub-date span');
+           let current_year_val = current_year.data('year');
+           let new_year = (parseInt(current_year_val) + parseInt(add_year));
+           current_year.text(new_year);
+
+        });
+
+        $('.sub-years').on('change', function(){
+            $('.sub-user-type').change();
+        });
+    }
 
 
 });

@@ -5,6 +5,8 @@ use CNEWS\User;
 use CNEWS\CNotices;
 use CNEWS\News;
 
+User::check_subscription();
+
 if(!is_logged_in()){
 
     header('Location: '.'/login');

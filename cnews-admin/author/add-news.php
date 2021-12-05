@@ -3,6 +3,15 @@
 use \CNEWS\News;
 use \CNEWS\Category;
 use \CNEWS\CNotices;
+use \CNEWS\User;
+
+User::check_subscription();
+if(User::current_user_can('Author')){
+
+}else{
+    header('Location: '.'/login');
+    exit;
+}
 
 cnews_admin_header_add();
 News::post_news();

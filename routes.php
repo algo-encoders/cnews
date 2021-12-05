@@ -79,6 +79,8 @@ get('/termsandconditions', 'termsandconditions.php');
 get('/add-news', 'cnews-admin/author/add-news.php');
 post('/add-news', 'cnews-admin/author/add-news.php');
 get('/buy-subscription', 'cnews-admin/author/buy-subscription.php');
+post('/buy-subscription', 'cnews-admin/author/buy-subscription.php');
+post('/payment-confirm', 'cnews-admin/author/payment-confirm.php');
 
 
 get('/categories', 'cnews-admin/author/category.php');

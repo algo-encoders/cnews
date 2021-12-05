@@ -47,6 +47,12 @@ class CNotices
         'profile_update_error' => "There is some issue to update your profile please try again",
         'profile_updated_success' => "Profile updated",
 
+
+//        payments
+
+        'payment_cancel' => "Unfortunately your payment has been canceled, Please try again.",
+        'payment_success' => "Congratulations, you have successfully completed your payment, it's take a little time to setup your account please be patience."
+
     );
 
     public static $active_notices = array();
