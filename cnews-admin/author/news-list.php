@@ -6,10 +6,10 @@ use \CNEWS\CNotices;
 use \CNEWS\CError;
 
 User::check_subscription();
-if(User::current_user_can('Author')){
+if(User::current_user_can('author')){
 
 }else{
-    header('Location: '.'/login');
+    echo "You are not allow to access this page";
     exit;
 }
 

@@ -11,3 +11,6 @@ Curated News is a new way to consume information media. With so much available c
 ### Visit our website for more information:
 
 - [Website](https://curatednews.xyz)
+
+paypal-test user: sb-m0p47p8865826@personal.example.com
+pwd: 0ccDGG1-

@@ -21,6 +21,7 @@ require CNEWS_DIR.'/sub-project/functions.php';
 // Static GET
 // In the URL -> http://localhost
 // The output -> Index
+
 get('/', 'home.php');
 
 // Dynamic GET. Example with 1 variable

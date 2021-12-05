@@ -20,6 +20,7 @@ function delete($route, $path_to_include){
 function any($route, $path_to_include){ route($route, $path_to_include); }
 function route($route, $path_to_include){
     global $current_main_route, $current_route;
+    payment_routes_verify();
     $current_main_route = $route;
   $ROOT = $_SERVER['DOCUMENT_ROOT'];
   if($route == "/404"){

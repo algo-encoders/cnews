@@ -492,11 +492,9 @@ class User
         $this->profile_image = $profile_image;
     }
 
-
-
-
-
     public static function user_roles($user_role){
+
+        $user_role = strtolower($user_role) == "joint" ? 'Both' : $user_role;
 
         $reader = [
             'read_news' => true,
