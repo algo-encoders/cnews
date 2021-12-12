@@ -48,6 +48,21 @@ class User
         }
     }
 
+    public static function is_active_subscription(){
+
+        $current_user = self::get_user();
+        $sub_expiry = $current_user['subscription_expiry'];
+        $active_status = false;
+        if($sub_expiry){
+            $expire_time = strtotime($sub_expiry);
+            if(time() <= $expire_time){
+                $active_status = true;
+            }
+        }
+
+        return $active_status;
+    }
+
     public static function check_subscription(){
         if(!self::is_user_logged_in()){
             header('Location: '.'/login');
@@ -479,7 +494,7 @@ class User
         if($this->profile_image){
             return $this->profile_image;
         }else{
-            return '/cnews-admin/img/placeholder.png';
+            return '/cnews-admin/img/placeholder-2.png';
         }
 
     }

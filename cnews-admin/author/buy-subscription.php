@@ -9,6 +9,11 @@ use \CNEWS\Payments;
 
 $posted_user = User::get_user();
 
+if($posted_user['user_type'] == 'N/A'){
+    $posted_user['user_type'] = 'Author';
+}
+
+
 Payments::post_payment();
 cnews_admin_header_add();
 
@@ -58,7 +63,7 @@ cnews_admin_header_add();
                                         </div>
                                     </div>
 
-                                    <div class="row">
+                                    <div class="row d-none">
                                         <div class="col-5">
                                             <div class="form-group">
                                                 <label class="form-control-label">Duration</label>
@@ -120,8 +125,8 @@ cnews_admin_header_add();
                                         <div class="col-md-5 pay-pal-btn">
 
                                             <button type="submit" name="pay_with_paypal" title="Pay With PayPal"><img class="btn" src="<?php echo admin_dir_url("/img/paypal btn.png") ?>" alt=""></button>
-                                            <br>
-                                            <img src="<?php echo admin_dir_url("/img/paypal-down.png") ?>" alt="">
+<!--                                            <br>-->
+<!--                                            <img src="--><?php //echo admin_dir_url("/img/paypal-down.png") ?><!--" alt="">-->
                                         </div>
                                     </div>
 

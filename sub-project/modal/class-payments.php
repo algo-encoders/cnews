@@ -7,13 +7,18 @@ class Payments
 
     public static function post_payment(){
         $paypal_config = paypal_configurations();
+
+        $current_user = User::get_user();
+
+        $current_user_type = $current_user['user_type'];
+
         if(isset($_POST['pay_with_paypal'])){
 
             if(!isset($_POST['cnews_nonce']) || !cnews_verify_nonce($_POST['cnews_nonce'], 'cnews_nonce_action')){
                 die('Sorry, your nonce did not verify');
             }else{
 
-                if(is_logged_in() && (User::current_user_can('author') || User::current_user_can('reader'))){
+                if(is_logged_in() && ($current_user_type == 'N/A' || User::current_user_can('author') || User::current_user_can('reader'))){
 
 
                     // Grab the post data so that we can set up the query string for PayPal.
@@ -61,7 +66,7 @@ class Payments
 
                     $data_default['item_number'] = base64_encode($data_default['item_number']);
 
-                       // Build the query string from the data.
+                    // Build the query string from the data.
                     $data = array_merge($data_default, $data);
 
 

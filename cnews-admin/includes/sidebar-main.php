@@ -6,6 +6,7 @@
     $current_user = User::get_logged_in_user();
 
     $news_li = ['add-news', 'news-list', 'categories'];
+    $reader_li = ['add-news', 'news-list', 'categories'];
 
 
 ?>
@@ -21,7 +22,29 @@
                 <p><?php echo $current_user->getUserType(); ?></p>
             </div>
         </div>
-        <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
+
+        <!-- Sidebar Navidation Menus--><span class="heading">curated Tools</span>
+
+        <ul class="list-unstyled">
+
+            <li><a href="#reader_drop_down" class="<?php echo $current_route == 'news-reader' ? '' : 'collapsed'; ?>" aria-expanded="<?php echo $current_route == 'news-reader' ? 'true' : 'false'; ?>" data-toggle="collapse"> <i class="icon-windows"></i>Reader Tools</a>
+                <ul id="reader_drop_down" class="collapse list-unstyled <?php echo $current_route == 'news-reader' ? 'show' : ''; ?>">
+                    <li class="<?php echo $current_route == 'news-reader' ? 'text-primary' : ''; ?>">
+                        <a href="/news-reader">News Reader</a>
+                    </li>
+                    <li class="<?php echo $current_route == 'news-reader' && isset($_GET['saved_news']) ? 'text-primary' : ''; ?>">
+                        <a href="/news-reader?saved_news=true">Saved News</a>
+                    </li>
+                    <li class="<?php echo $current_route == 'news-reader' && isset($_GET['send_news']) ? 'text-primary' : ''; ?>">
+                        <a href="/news-reader?send_news=true">Send News</a>
+                    </li>
+                </ul>
+            </li>
+
+        </ul>
+
+
+
         <ul class="list-unstyled">
 
             <?php
@@ -30,7 +53,7 @@
 
             ?>
 
-                <li><a href="#news_drop_down" class="<?php echo in_array($current_route, $news_li)? '' : 'collapsed'; ?>" aria-expanded="<?php echo in_array($current_route, $news_li)? 'true' : 'false'; ?>" data-toggle="collapse"> <i class="icon-windows"></i>News</a>
+                <li><a href="#news_drop_down" class="<?php echo in_array($current_route, $news_li)? '' : 'collapsed'; ?>" aria-expanded="<?php echo in_array($current_route, $news_li)? 'true' : 'false'; ?>" data-toggle="collapse"> <i class="icon-windows"></i>Author Tools</a>
                     <ul id="news_drop_down" class="collapse list-unstyled <?php echo in_array($current_route, $news_li)? 'show' : ''; ?>">
                         <li class="<?php echo $current_route == 'add-news' ? 'text-primary' : ''; ?>">
                             <a href="/add-news">Add News</a>

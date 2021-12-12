@@ -118,7 +118,7 @@ cnews_header();
 
                                         <input id="register-cpassword" type="password" equalto="#register-password" name="cnews_user[c_password]" required data-msg="Please confirm your password" class="form-control">
                                     </div>
-                                    <div class="form-group mb-5">
+                                    <div class="form-group mb-5 d-none">
                                         <label for="user-type" class="label-material">User Type</label>
 
                                         <?php
@@ -136,6 +136,7 @@ cnews_header();
                                         <select id="user-type" name="cnews_user[user_type]" required data-msg="Please select user type" class="custom-select">
 
 
+                                            <option value="N/A" <?php echo cnews_get_value('user_type', $posted_user) == 'Author' ? 'selected' : ''; ?>>Author</option>
                                             <option value="Author" <?php echo cnews_get_value('user_type', $posted_user) == 'Author' ? 'selected' : ''; ?>>Author</option>
                                             <option value="Reader" <?php echo cnews_get_value('user_type', $posted_user) == 'Reader' ? 'selected' : ''; ?>>Reader</option>
                                             <option value="Both" <?php echo cnews_get_value('user_type', $posted_user) == 'Both' ? 'selected' : ''; ?>>Reader & Author</option>
