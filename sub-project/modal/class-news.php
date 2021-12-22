@@ -314,9 +314,10 @@ class News
         $current_user_id = $current_user_id !== false ? $current_user_id : -1;
 
         $saved_news = isset($_GET['saved_news']) && $_GET['saved_news'] && $_GET['saved_news'] == 'true' ? "AND (SELECT COUNT(*) FROM saved_news WHERE reader=$current_user_id AND news=news.ID) > 0" : '';
+        $shared_news = isset($_GET['send_news']) && $_GET['send_news'] && $_GET['send_news'] == 'true' ? "AND (SELECT COUNT(*) FROM shared_news WHERE share_to=$current_user_id AND news=news.ID) > 0" : '';
 
         $parts = [
-            'basic' => "WHERE news.news_status = 'published' AND news.created_date <= '$current_date' $saved_news
+            'basic' => "WHERE news.news_status = 'published' AND news.created_date <= '$current_date' $saved_news $shared_news
                 ORDER BY news.created_date DESC",
 
         ];

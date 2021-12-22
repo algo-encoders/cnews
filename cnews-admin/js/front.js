@@ -233,8 +233,8 @@ $(function () {
 
             let word_count = cnews_get_word_count('cnews_content');
 
-            if(word_count > 500){
-                alert('Only 500 words allowed in news content');
+            if(word_count < 500){
+                alert('Minimum 500 words required to post a news');
                 return;
             }else{
 
@@ -254,7 +254,29 @@ $(function () {
             $('.cnews-latest-news').click();
         });
 
+        $("#cnews_excerpt").on('keyup', function() {
+            var words = 0;
+
+            if ((this.value.match(/\S+/g)) != null) {
+                words = this.value.match(/\S+/g).length;
+            }
+
+            if (words > 150) {
+                // Split the string on first 200 words and rejoin on spaces
+                var trimmed = $(this).val().split(/\s+/, 200).join(" ");
+                // Add a space at the end to make sure more typing creates new words
+                $(this).val(trimmed + " ");
+            }
+            else {
+                $('#display_count').text(words);
+                $('#word_left').text(200-words);
+            }
+        });
+
     }
+
+
+
 
 
 //    add subs
@@ -280,6 +302,92 @@ $(function () {
             $('.sub-user-type').change();
         });
     }
+
+
+//    Reader
+
+    $('.reader_share_news').on('click', function(e){
+        e.preventDefault();
+
+        $('.modal-notices').html('');
+
+        let news_id = $('#shared_news').val();
+
+        let user_name = $('#cnews_model_user');
+        let user_val = user_name.val();
+
+
+        if(user_val.length <= 0){
+            alert('Username or Email required to share this news');
+
+            return;
+        }
+
+        let this_btn = $(this);
+
+        this_btn.prop('disabled', true);
+        this_btn.text('Sharing...');
+
+        let data = {
+            'cnews_ajax_action' : 'cnews_shared_news',
+            'user_name': user_val,
+            'news_id': news_id
+        };
+
+        $.post('/ajax-admin', data, function(resp, code){
+            this_btn.prop('disabled', false);
+            this_btn.text('Share');
+
+            if(code == 'success', resp.html){
+                $('.modal-notices').html(resp.html);
+
+                if(resp.shared_news){
+                    $('#cnews_model_user').val('');
+                }
+            }
+        });
+    });
+
+    $('.news-action').on('click', function(){
+
+        let _this = $(this);
+        let news_id = _this.parents('.cnews-single-loop:first').data('news');
+        let this_action = $(this).data('action');
+        let this_title = _this.parents('.cnews-single-loop:first').data('title');
+
+
+        if(this_action == 'share'){
+
+            let modal = $('#send_news_modal').modal('show');
+            let modal_title = $('.modal-news-title');
+            modal_title.text(this_title);
+            $('#shared_news').val(news_id);
+
+        }else{
+
+            _this.toggleClass('text-warning');
+             let data = {
+                cnews_ajax_action: 'cnews_save_user_news',
+                cnews_action: this_action,
+                news_id: news_id
+            }
+
+            $.post('/ajax-admin', data, function(resp, code){
+                if(resp.code == 'news_saved_inserted'){
+                    _this.addClass('text-warning');
+                }else{
+
+                    _this.removeClass('text-warning');
+
+                    if(resp.code == 'news_saved_failed'){
+                        alert(resp.message);
+                    }
+                }
+            });
+
+        }
+
+    });
 
 
 });

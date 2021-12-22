@@ -51,7 +51,14 @@ class CNotices
 //        payments
 
         'payment_cancel' => "Unfortunately your payment has been canceled, Please try again.",
-        'payment_success' => "Congratulations, you have successfully completed your payment, it's take a little time to setup your account please be patience."
+        'payment_success' => "Congratulations, you have successfully completed your payment, it's take a little time to setup your account please be patience.",
+
+//   Share news
+
+        'news_user_required' => "News or User Name is empty",
+        'user_not_found' => "User not found please enter different user name or email",
+        'news_already_shared' => "You have already shared current news to this user",
+        'news_shared_success' => "News Shared Successfully",
 
     );
 

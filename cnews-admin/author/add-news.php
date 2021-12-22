@@ -157,6 +157,7 @@ $is_edit = CNotices::get_is_news_edit();
                                             <div class="cnews_excerpt_input">
                                                 <label class="form-control-label">News Excerpt (Summary)</label>
                                                 <textarea name="c_news[excerpt]" maxlength="300" class="form-control" id="cnews_excerpt" cols="30" rows="5"><?php echo cnews_get_value('excerpt', $posted_news); ?></textarea>
+                                                <span id="display_count" class="text-white">0</span><span class="text-white">/150</span>
                                             </div>
                                         </div>
                                     </div>

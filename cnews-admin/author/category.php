@@ -5,7 +5,9 @@ use \CNEWS\CNotices;
 use \CNEWS\User;
 
 User::check_subscription();
-if(User::current_user_can('Author')){
+$current_user = User::get_user();
+
+if($current_user['user_type'] == 'Author' || $current_user['user_type'] == 'Joint' || $current_user['user_type'] == 'Both'){
 
 }else{
     header('Location: '.'/login');

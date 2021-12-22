@@ -33,3 +33,7 @@
 
 .pay-pal-btn img.btn { transition: all .5s ease-in-out; }
 .pay-pal-btn img.btn:hover { transform: scale(1.1); }
+
+.news-action{
+    cursor: pointer;
+}

@@ -96,6 +96,62 @@ if(!function_exists('cnews_load_sub_cats')){
 
 }
 
+if(!function_exists('cnews_shared_news')){
+    function cnews_shared_news(){
+        $result = [];
+
+        if(User::is_user_logged_in()){
+
+            if(isset($_POST['user_name']) && isset($_POST['news_id'])){
+
+
+                $user = MDB()->queryFirstRow("SELECT * FROM users WHERE user_name=%s || email=%s", $_POST['user_name'], $_POST['user_name']);
+                if(empty($user)){
+                    CNotices::add_notice('user_not_found', 'error');
+                }else{
+
+                    $shared_to = $user["ID"];
+                    $shared_from = User::get_current_user_id();
+                    $news_id = $_POST['news_id'];
+                    $news_already = MDB()->queryFirstRow("SELECT * FROM shared_news WHERE share_from=%i AND share_to=%i AND news=%i", $shared_from, $shared_to, $news_id);
+
+                    if(empty($news_already)){
+
+                        $news_shared = MDB()->insert('shared_news', ['share_from' => $shared_from, 'share_to' => $shared_to, 'news' => $news_id]);
+                        $result['shared_news'] = $news_shared;
+
+                        if($news_shared){
+                            CNotices::add_notice('news_shared_success', 'success');
+                        }
+
+                    }else{
+                        CNotices::add_notice('news_already_shared', 'error');
+                    }
+                }
+
+
+            }else{
+                CNotices::add_notice('news_user_required', 'error');
+            }
+
+        }else{
+            CNotices::add_notice('not_authorized', 'error');
+        }
+
+
+        ob_start();
+
+        CNotices::print_notices();
+
+        $result['html'] = ob_get_clean();
+
+
+        echo json_encode($result);
+
+        exit;
+    }
+}
+
 
 if(isset($_POST['cnews_ajax_action'])){
     $cnews_action = $_POST['cnews_ajax_action'];

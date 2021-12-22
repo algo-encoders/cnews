@@ -79,31 +79,5 @@ btn.on('click', function (e) {
 $(document).ready(function(){
 	$('.form-validate').validate();
 
-	$('.news-action').on('click', function(){
 
-		let _this = $(this);
-		let news_id = _this.parents('.cnews-single-loop:first').data('news');
-		let this_action = $(this).data('action');
-		_this.toggleClass('text-warning');
-
-		let data = {
-			cnews_ajax_action: 'cnews_save_user_news',
-			cnews_action: this_action,
-			news_id: news_id
-		}
-
-		$.post('/ajax-admin', data, function(resp, code){
-			if(resp.code == 'news_saved_inserted'){
-				_this.addClass('text-warning');
-			}else{
-
-				_this.removeClass('text-warning');
-
-				if(resp.code == 'news_saved_failed'){
-					alert(resp.message);
-				}
-			}
-		});
-
-	});
 });

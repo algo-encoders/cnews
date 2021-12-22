@@ -17,8 +17,9 @@ $single_news = News::get_news_by_slug($news_slug);
 $all_published_news = !empty($single_news) ? [$single_news] : [];
 
 
-cnews_header();
+//cnews_header();
 
+cnews_admin_header_add();
 ?>
 
     <!--====== MAIN PART START ======-->
@@ -26,7 +27,7 @@ cnews_header();
         <!--======  Curated News platform START ======-->
         <section id="News_platform">
             <div class="container">
-                <div class="row justify-content-center">
+                <div class="row mt-3">
 
                     <div class="col-md-12">
 
@@ -45,7 +46,7 @@ cnews_header();
                 </div>
 
                 <div class="cnews_section" style="margin-bottom: 200px;">
-                    <div class="row justify-content-center">
+                    <div class="row">
                         <div class="col-md-7">
 
                     <?php
@@ -56,7 +57,7 @@ cnews_header();
                                 ?>
 
                                 <div class="row mb-3">
-                                    <div class="col-md-12 text-right" >
+                                    <div class="col-md-12" >
                                         <?php
                                             if($news['featured_image']):
 
@@ -64,7 +65,7 @@ cnews_header();
                                                 $news['featured_image'] = cnews_placeholder_image();
                                             endif;
                                         ?>
-                                        <img src="<?php echo $news['featured_image']; ?>" style="width: 100%; alt="">
+                                        <img src="<?php echo $news['featured_image']; ?>" style="width: 75%; alt="">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -117,5 +118,7 @@ cnews_header();
     <!--====== MAIN PART END ======-->
 
 <?php
-cnews_footer();
+//cnews_footer();
 ?>
+
+<?php cnews_admin_footer(); ?>
