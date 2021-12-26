@@ -252,6 +252,109 @@ class Category
 
     }
 
+    public static function get_categories_parent(){
+        $cat_list = MDB()->query("SELECT * FROM category ORDER BY parent ASC");
+        $cat_list_parent = array();
+        if(!empty($cat_list)){
+
+            foreach($cat_list as $cat){
+                if($cat['parent'] > 0){
+                    break;
+                }
+
+                $cat_parent = $cat;
+
+                $sub_cats = array_filter($cat_list, function($cat) use ($cat_parent){
+
+                    if($cat['parent'] == $cat_parent['ID']){
+                        return $cat;
+                    }
+
+                });
+
+                $sub_cats = array_values($sub_cats);
+
+                $cat_parent['child'] = $sub_cats;
+
+                $cat_list_parent[] = $cat_parent;
+            }
+
+        }
+        return $cat_list_parent;
+    }
+
+    public static function get_filtered_category(){
+
+        $cat_list_parent = self::get_categories_parent();
+        ?>
+
+        <select class="form-control mb-3 mb-3 filtered_categories">
+
+            <option value="">Filter By Category</option>
+
+            <?php if(!empty($cat_list_parent)): ?>
+
+                <?php
+
+                $selected_cat = isset($_GET['filter_category']) && $_GET['filter_category'] ? $_GET['filter_category'] : '';
+
+                foreach ($cat_list_parent as $parent_cat):
+                    $selected = $parent_cat == $selected_cat['ID'] ? 'selected' : '';
+                    echo "<option $selected value='{$parent_cat['ID']}'>{$parent_cat['title']}</option>";
+
+                    if(!empty($parent_cat['child'])):
+
+                        foreach($parent_cat['child'] as $child_cat):
+                            $selected = $selected_cat == $child_cat['ID'] ? 'selected' : '';
+                            echo "<option $selected value='{$child_cat['ID']}'> - {$child_cat['title']}</option>";
+
+                        endforeach;
+
+                    endif;
+
+                endforeach;
+                ?>
+
+            <?php endif; ?>
+        </select>
+
+        <?php
+    }
+
+    public static function get_rss_filter_list($type){
+        return MDB()->query("SELECT DISTINCT $type FROM rss ORDER BY $type ASC");
+    }
+
+    public static function get_rss_filter($type){
+
+        $filter_type = 'filter_'.$type;
+        $rss_filter_list = self::get_rss_filter_list($type);
+
+        ?>
+
+        <select name="<?php echo $filter_type; ?>" class="form-control mb-3 mb-3 rss_filter">
+
+            <option value="">Filter By <?php echo $type; ?></option>
+
+            <?php if(!empty($rss_filter_list)): ?>
+
+                <?php
+
+                $selected_cat = isset($_GET[$filter_type]) && $_GET[$filter_type] ? $_GET[$filter_type] : '';
+
+                foreach ($rss_filter_list as $filter):
+                    $filter = $filter[$type];
+                    $selected = $filter == $selected_cat ? 'selected' : '';
+                    echo "<option $selected value='$filter'>$filter</option>";
+                endforeach;
+                ?>
+
+            <?php endif; ?>
+        </select>
+
+        <?php
+    }
+
 
 
     /**

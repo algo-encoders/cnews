@@ -3,6 +3,7 @@
 use \CNEWS\User;
 use \CNEWS\CNotices;
 use \CNEWS\Category;
+use \CNEWS\News;
 
 if(!function_exists('cnews_save_user_news')){
     function cnews_save_user_news (){
@@ -151,6 +152,32 @@ if(!function_exists('cnews_shared_news')){
         exit;
     }
 }
+
+if(!function_exists('load_more_rss')){
+    function load_more_rss(){
+        $result = [];
+
+        if(User::is_user_logged_in() && isset($_POST['offset'])){
+
+            $offset = $_POST['offset'];
+            $all_rss = News::rss_query($offset);
+
+            ob_start();
+
+            News::rss_html($all_rss);
+
+            $result['html'] = ob_get_clean();
+
+
+        }
+
+        echo json_encode($result);
+
+        exit;
+    }
+}
+
+
 
 
 if(isset($_POST['cnews_ajax_action'])){

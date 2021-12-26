@@ -4,6 +4,7 @@ use CNEWS\CError;
 use CNEWS\User;
 use CNEWS\CNotices;
 use CNEWS\News;
+use CNEWS\Category;
 
 User::check_subscription();
 
@@ -53,10 +54,28 @@ cnews_admin_header_add();
                             <div class="cnews_section">
 
                             <div class="row ">
-                                <div class="col-md-12 text-white">
+                                <div class="col-md-6 text-white">
                                     <h2>HI, <?php echo $current_user['first_name']; ?></h2>
                                     <p><strong>Here's your news feed....</strong></p>
                                 </div>
+
+                                <div class="col-md-6">
+
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <?php
+
+                                            Category::get_filtered_category();
+
+                                            ?>
+                                        </div>
+                                        <div class="col-4">
+                                            <button class="btn btn-primary filter_news">Filter News</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+
                             </div>
 
                             <div class="row mt-3 ml-3">

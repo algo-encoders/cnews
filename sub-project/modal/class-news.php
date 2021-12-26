@@ -295,6 +295,112 @@ class News
         return $query;
     }
 
+    public static function rss_settings($setting = '', $default = ''){
+        $settings = [
+            'limit' => 20,
+        ];
+
+        if($setting){
+
+            return array_key_exists($setting, $settings) ? $settings[$setting] : $default;
+
+        }else{
+            return $settings;
+        }
+    }
+
+    public static function get_rss_query(){
+
+    }
+
+    public static function get_rss_pagination_data(){
+        $where = self::rss_where_query();
+        $count_rss = MDB()->queryFirstColumn("SELECT COUNT(ID) FROM rss $where");
+        $total_rss = current($count_rss);
+        $page_limit = self::rss_settings('limit');
+        $page_limit = $page_limit > $total_rss ? $total_rss : $page_limit;
+        $total_pages = ceil($total_rss/$page_limit);
+
+
+        return [
+          'total_rss' => $total_rss,
+          'total_pages' => $total_pages,
+        ];
+    }
+
+    public static function rss_where_query(){
+        $filters = ['Leaning', 'Source', 'Topic'];
+        $where = [];
+        foreach($filters as $filter){
+            $filter_type = 'filter_'.$filter;
+            if(isset($_REQUEST[$filter_type]) && $_REQUEST[$filter_type]){
+                $where[] = "$filter = '$_REQUEST[$filter_type]' ";
+            }
+        }
+
+
+        $where = implode('AND ', $where);
+        $where = $where ? 'WHERE '.$where : '';
+
+        return $where;
+    }
+
+
+    public static function rss_query($page = 0, $order = "ASC"){
+
+        if(User::is_user_logged_in() && User::current_user_can('reader')){
+
+            $limit = self::rss_settings('limit');
+            $offset = $page * $limit;
+            $where = self::rss_where_query();
+            $query = "SELECT * FROM `rss` $where ORDER BY date $order LIMIT $limit OFFSET $offset ";
+
+//            pree($query);
+//
+//            exit;
+
+            return MDB()->query($query);
+
+        }else{
+            return [];
+        }
+
+    }
+
+    public static function rss_html($all_published_news){
+        foreach($all_published_news as $news_key => $news){
+
+            ?>
+
+            <div class="row mb-3 cnews-single-loop rss-<?php echo $news['ID']; ?>">
+
+                <div class="col-md-12" style="min-height: 110px;">
+                    <h3 class="cnews-title"><a target="_blank" href="<?php echo $news['Link']; ?>" class="text-white"><?php echo $news['Link']; ?></a></h3>
+                    <div>
+                        <small class="text-success">
+                            <strong>Topic:</strong> <?php echo $news['Topic']; ?> &nbsp;&nbsp;&nbsp;
+                        </small>
+
+                        <small class="text-success">
+                            <strong>Leaning:</strong> <?php echo $news['Leaning']; ?> &nbsp;&nbsp;&nbsp;
+                        </small>
+
+                        <small class="text-success">
+                            <strong>Source:</strong> <?php echo $news['Source']; ?> &nbsp;&nbsp;&nbsp;
+                        </small>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+            <?php
+        }
+    }
+
     public static function get_where_slug(){
 
 
@@ -315,9 +421,11 @@ class News
 
         $saved_news = isset($_GET['saved_news']) && $_GET['saved_news'] && $_GET['saved_news'] == 'true' ? "AND (SELECT COUNT(*) FROM saved_news WHERE reader=$current_user_id AND news=news.ID) > 0" : '';
         $shared_news = isset($_GET['send_news']) && $_GET['send_news'] && $_GET['send_news'] == 'true' ? "AND (SELECT COUNT(*) FROM shared_news WHERE share_to=$current_user_id AND news=news.ID) > 0" : '';
+        $category = isset($_GET['filter_category']) && $_GET['filter_category'] ? $_GET['filter_category'] : 0;
+        $category_filter = isset($_GET['filter_category']) && $_GET['filter_category'] ? "AND (category = $category OR sub_category = $category)" : '';
 
         $parts = [
-            'basic' => "WHERE news.news_status = 'published' AND news.created_date <= '$current_date' $saved_news $shared_news
+            'basic' => "WHERE news.news_status = 'published' AND news.created_date <= '$current_date' $saved_news $shared_news $category_filter
                 ORDER BY news.created_date DESC",
 
         ];
@@ -337,6 +445,22 @@ class News
         return MDB()->query(self::get_news_query_by($query_type));
 
     }
+
+    public static function import_rss_to_db(){
+        if(isset($_GET['import_rss'])){
+            $rss_file = home_path('/uploads/rss/rss.json');
+            if(file_exists($rss_file)){
+                $rss_content = file_get_contents($rss_file);
+                $rss_content = json_decode($rss_content, true);
+                if(User::current_user_can('admin') && !empty($rss_content)){
+                    MDB()->insert('rss', $rss_content);
+                }
+            }
+
+        }
+    }
+
+
 
     public static function news_get_action(){
 

@@ -1,0 +1,578 @@
+[
+  {
+    "Source": "Reason",
+    "Link": "https://reason.com/latest/feed/",
+    "Topic": "U.S. News",
+    "Leaning": "Neutral"
+  },
+  {
+    "Source": "The Hill",
+    "Link": "https://thehill.com/rss/syndicator/19109",
+    "Topic": "U.S. News",
+    "Leaning": "Neutral"
+  },
+  {
+    "Source": "The Hill",
+    "Link": "https://thehill.com/taxonomy/term/20/feed",
+    "Topic": "Business",
+    "Leaning": "Neutral"
+  },
+  {
+    "Source": "The Hill",
+    "Link": "https://thehill.com/rss/syndicator/21684",
+    "Topic": "Videos",
+    "Leaning": "Neutral"
+  },
+  {
+    "Source": "CNBC",
+    "Link": "https://www.cnbc.com/id/100003114/device/rss/rss.html",
+    "Topic": "Top News",
+    "Leaning": "Neutral"
+  },
+  {
+    "Source": "CNBC",
+    "Link": "https://www.cnbc.com/id/100727362/device/rss/rss.html",
+    "Topic": "World News",
+    "Leaning": "Neutral"
+  },
+  {
+    "Source": "CNBC",
+    "Link": "https://www.cnbc.com/id/15837362/device/rss/rss.html",
+    "Topic": "U.S. News",
+    "Leaning": "Neutral"
+  },
+  {
+    "Source": "CNBC",
+    "Link": "https://www.cnbc.com/id/19832390/device/rss/rss.html",
+    "Topic": "Asia News",
+    "Leaning": "Neutral"
+  },
+  {
+    "Source": "CNBC",
+    "Link": "https://www.cnbc.com/id/19794221/device/rss/rss.html",
+    "Topic": "Europe News",
+    "Leaning": "Neutral"
+  },
+  {
+    "Source": "CNBC",
+    "Link": "https://www.cnbc.com/id/10001147/device/rss/rss.html",
+    "Topic": "Business",
+    "Leaning": "Neutral"
+  },
+  {
+    "Source": "CNBC",
+    "Link": "https://www.cnbc.com/id/100004038/device/rss/rss.html",
+    "Topic": "Videos",
+    "Leaning": "Neutral"
+  },
+  {
+    "Source": "The Economist",
+    "Link": "https://www.economist.com/united-states/rss.xml",
+    "Topic": "U.S. News",
+    "Leaning": "Neutral"
+  },
+  {
+    "Source": "The Economist",
+    "Link": "https://www.economist.com/asia/rss.xml",
+    "Topic": "Asia News",
+    "Leaning": "Neutral"
+  },
+  {
+    "Source": "The Economist",
+    "Link": "https://www.economist.com/europe/rss.xml",
+    "Topic": "Europe News",
+    "Leaning": "Neutral"
+  },
+  {
+    "Source": "The Economist",
+    "Link": "https://www.economist.com/business/rss.xml",
+    "Topic": "Business",
+    "Leaning": "Neutral"
+  },
+  {
+    "Source": "The Economist",
+    "Link": "https://www.economist.com/science-and-technology/rss.xml",
+    "Topic": "Technology",
+    "Leaning": "Neutral"
+  },
+  {
+    "Source": "CS Monitor",
+    "Link": "https://rss.csmonitor.com/feeds/all",
+    "Topic": "U.S. News",
+    "Leaning": "Neutral"
+  },
+  {
+    "Source": "CS Monitor",
+    "Link": "https://rss.csmonitor.com/feeds/wam",
+    "Topic": "Business",
+    "Leaning": "Neutral"
+  },
+  {
+    "Source": "Task & Purpose",
+    "Link": "https://taskandpurpose.com/feed/",
+    "Topic": "U.S. Military",
+    "Leaning": "Neutral"
+  },
+  {
+    "Source": "Forbes",
+    "Link": "https://www.forbes.com/business/feed",
+    "Topic": "Business",
+    "Leaning": "Neutral"
+  },
+  {
+    "Source": "Forbes",
+    "Link": "https://www.forbes.com/money/feed",
+    "Topic": "Money",
+    "Leaning": "Neutral"
+  },
+  {
+    "Source": "Forbes",
+    "Link": "https://www.forbes.com/innovation/feed",
+    "Topic": "Innovation",
+    "Leaning": "Neutral"
+  },
+  {
+    "Source": "Forbes",
+    "Link": "https://www.forbes.com/lifestyle/feed",
+    "Topic": "Lifestyle",
+    "Leaning": "Neutral"
+  },
+  {
+    "Source": "BBC",
+    "Link": "https://feeds.bbci.co.uk/news/rss.xml",
+    "Topic": "Top News",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "BBC",
+    "Link": "https://feeds.bbci.co.uk/news/business/rss.xml",
+    "Topic": "Business",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "BBC",
+    "Link": "https://feeds.bbci.co.uk/news/technology/rss.xml",
+    "Topic": "Technology",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "CBS News",
+    "Link": "https://www.cbsnews.com/latest/rss/main",
+    "Topic": "Top News",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "CBS News",
+    "Link": "https://www.cbsnews.com/latest/rss/us",
+    "Topic": "U.S. News",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "CBS News",
+    "Link": "https://www.cbsnews.com/latest/rss/technology",
+    "Topic": "Technology",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "CBS News",
+    "Link": "https://www.cbsnews.com/latest/rss/video",
+    "Topic": "Videos",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "CBS News",
+    "Link": "https://www.cbsnews.com/latest/rss/moneywatch",
+    "Topic": "Money",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "CBS News",
+    "Link": "https://www.cbsnews.com/latest/rss/world",
+    "Topic": "World News",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "CNN",
+    "Link": "http://rss.cnn.com/rss/cnn_topstories.rss",
+    "Topic": "Top News",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "CNN",
+    "Link": "http://rss.cnn.com/rss/cnn_world.rss",
+    "Topic": "World News",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "CNN",
+    "Link": "http://rss.cnn.com/rss/cnn_us.rss",
+    "Topic": "U.S. News",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "CNN",
+    "Link": "http://rss.cnn.com/rss/money_latest.rss",
+    "Topic": "Business",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "CNN",
+    "Link": "http://rss.cnn.com/rss/cnn_tech.rss",
+    "Topic": "Technology",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "Fox News",
+    "Link": "http://feeds.foxnews.com/foxnews/national",
+    "Topic": "U.S. News",
+    "Leaning": "Conservative"
+  },
+  {
+    "Source": "Fox News",
+    "Link": "http://feeds.foxnews.com/foxnews/scitech",
+    "Topic": "Technology",
+    "Leaning": "Conservative"
+  },
+  {
+    "Source": "Fox News",
+    "Link": "http://feeds.foxnews.com/foxnews/world",
+    "Topic": "World News",
+    "Leaning": "Conservative"
+  },
+  {
+    "Source": "Huff Post",
+    "Link": "https://chaski.huffpost.com/us/auto/vertical/us-news",
+    "Topic": "U.S. News",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "Huff Post",
+    "Link": "https://chaski.huffpost.com/us/auto/vertical/world-news",
+    "Topic": "World News",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "Huff Post",
+    "Link": "https://chaski.huffpost.com/us/auto/vertical/money",
+    "Topic": "Money",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "Huff Post",
+    "Link": "https://chaski.huffpost.com/us/auto/vertical/technology",
+    "Topic": "Technology",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "Huff Post",
+    "Link": "https://chaski.huffpost.com/us/auto/topic/asia",
+    "Topic": "Asia News",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "Huff Post",
+    "Link": "https://chaski.huffpost.com/us/auto/topic/europe",
+    "Topic": "Europe News",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "Huff Post",
+    "Link": "https://chaski.huffpost.com/us/auto/vertical/video",
+    "Topic": "Videos",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "Market Watch",
+    "Link": "http://www.marketwatch.com/rss/topstories",
+    "Topic": "Top News",
+    "Leaning": "Conservative"
+  },
+  {
+    "Source": "Market Watch",
+    "Link": "http://www.marketwatch.com/rss/StockstoWatch",
+    "Topic": "Stocks",
+    "Leaning": "Conservative"
+  },
+  {
+    "Source": "NPR",
+    "Link": "https://feeds.npr.org/1001/rss.xml",
+    "Topic": "U.S. News",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "New York Post",
+    "Link": "https://nypost.com/news/feed",
+    "Topic": "U.S. News",
+    "Leaning": "Conservative"
+  },
+  {
+    "Source": "New York Post",
+    "Link": "https://nypost.com/business/feed/",
+    "Topic": "Business",
+    "Leaning": "Conservative"
+  },
+  {
+    "Source": "New York Post",
+    "Link": "https://nypost.com/tech/feed/",
+    "Topic": "Technology",
+    "Leaning": "Conservative"
+  },
+  {
+    "Source": "New York Times",
+    "Link": "https://rss.nytimes.com/services/xml/rss/nyt/US.xml",
+    "Topic": "U.S. News",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "New York Times",
+    "Link": "https://rss.nytimes.com/services/xml/rss/nyt/World.xml",
+    "Topic": "World News",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "New York Times",
+    "Link": "https://rss.nytimes.com/services/xml/rss/nyt/AsiaPacific.xml",
+    "Topic": "Asia News",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "New York Times",
+    "Link": "https://rss.nytimes.com/services/xml/rss/nyt/Europe.xml",
+    "Topic": "Europe News",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "New York Times",
+    "Link": "https://rss.nytimes.com/services/xml/rss/nyt/MiddleEast.xml",
+    "Topic": "Middle East",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "New York Times",
+    "Link": "https://rss.nytimes.com/services/xml/rss/nyt/Business.xml",
+    "Topic": "Business",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "Politico",
+    "Link": "http://rss.politico.com/politics.xml",
+    "Topic": "U.S. News",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "Politico",
+    "Link": "http://rss.politico.com/defense.xml",
+    "Topic": "Defense",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "Politico",
+    "Link": "http://rss.politico.com/economy.xml",
+    "Topic": "Economy",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "Real Clear Politics",
+    "Link": "http://feeds.feedburner.com/realclearpolitics/qlMj",
+    "Topic": "U.S. News",
+    "Leaning": "Conservative"
+  },
+  {
+    "Source": "Real Clear Politics",
+    "Link": "http://www.realclearpolitics.com/video/index.xml",
+    "Topic": "Videos",
+    "Leaning": "Conservative"
+  },
+  {
+    "Source": "The Atlantic",
+    "Link": "https://www.theatlantic.com/feed/all/",
+    "Topic": "U.S. News",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "The Guardian",
+    "Link": "https://www.theguardian.com/us/rss",
+    "Topic": "U.S. News",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "The Guardian",
+    "Link": "https://www.theguardian.com/world/rss",
+    "Topic": "World News",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "The Guardian",
+    "Link": "https://www.theguardian.com/world/asia/rss",
+    "Topic": "Asia News",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "The Guardian",
+    "Link": "https://www.theguardian.com/world/europe-news/rss",
+    "Topic": "Europe News",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "The Guardian",
+    "Link": "https://www.theguardian.com/us/lifeandstyle/rss",
+    "Topic": "Lifestyle",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "The Nation",
+    "Link": "https://www.thenation.com/feed/?post_type=article&subject=asia",
+    "Topic": "Asia News",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "The Nation",
+    "Link": "https://www.thenation.com/feed/?post_type=article&subject=europe",
+    "Topic": "Europe News",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "The Nation",
+    "Link": "https://www.thenation.com/feed/?post_type=article&subject=technology",
+    "Topic": "Technology",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "The Nation",
+    "Link": "https://www.thenation.com/feed/?post_type=article&subject=world",
+    "Topic": "World News",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "U.S. News",
+    "Link": "https://www.usnews.com/rss/money",
+    "Topic": "Money",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "U.S. News",
+    "Link": "https://www.usnews.com/blogrss/data-mine",
+    "Topic": "Data",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "U.S. News",
+    "Link": "https://www.usnews.com/topics/subjects/science/rss",
+    "Topic": "Science",
+    "Leaning": "Liberal"
+  },
+  {
+    "Source": "New Atlas",
+    "Link": "https://newatlas.com/technology/index.rss",
+    "Topic": "Technology",
+    "Leaning": "Neutral"
+  },
+  {
+    "Source": "New Atlas",
+    "Link": "https://newatlas.com/lifestyle/index.rss",
+    "Topic": "Lifestyle",
+    "Leaning": "Neutral"
+  },
+  {
+    "Source": "New Atlas",
+    "Link": "https://newatlas.com/science/index.rss",
+    "Topic": "Science",
+    "Leaning": "Neutral"
+  },
+  {
+    "Source": "Phys",
+    "Link": "https://phys.org/rss-feed/",
+    "Topic": "Science",
+    "Leaning": "Neutral"
+  },
+  {
+    "Source": "Cato Institute",
+    "Link": "https://www.cato.org/rss/multimedia/cato-video",
+    "Topic": "Videos",
+    "Leaning": "Academic"
+  },
+  {
+    "Source": "Cato Institute",
+    "Link": "https://www.cato.org/rss/recent-opeds",
+    "Topic": "Opinion",
+    "Leaning": "Academic"
+  },
+  {
+    "Source": "The Conversation",
+    "Link": "https://theconversation.com/us/articles.atom",
+    "Topic": "Opinion",
+    "Leaning": "Academic"
+  },
+  {
+    "Source": "RAND Corporation",
+    "Link": "https://www.rand.org/blog.xml",
+    "Topic": "Opinion",
+    "Leaning": "Academic"
+  },
+  {
+    "Source": "Heritage Foundation",
+    "Link": "https://www.heritage.org/rss",
+    "Topic": "Opinion",
+    "Leaning": "Academic"
+  },
+  {
+    "Source": "Mises Institute",
+    "Link": "https://mises.org/feed/rss.xml",
+    "Topic": "Opinion",
+    "Leaning": "Academic"
+  },
+  {
+    "Source": "AEI",
+    "Link": "https://www.aei.org/feed/",
+    "Topic": "Opinion",
+    "Leaning": "Academic"
+  },
+  {
+    "Source": "Times of India",
+    "Link": "https://timesofindia.indiatimes.com/rssfeeds/296589292.cms",
+    "Topic": "World News",
+    "Leaning": "Unknown"
+  },
+  {
+    "Source": "Channel News Asia",
+    "Link": "https://www.channelnewsasia.com/api/v1/rss-outbound-feed?_format=xml&category=6511",
+    "Topic": "World News",
+    "Leaning": "Unknown"
+  },
+  {
+    "Source": "France 24",
+    "Link": "https://www.france24.com/en/europe/rss",
+    "Topic": "Europe News",
+    "Leaning": "Unknown"
+  },
+  {
+    "Source": "Al Monitor",
+    "Link": "https://www.al-monitor.com/rss",
+    "Topic": "Middle East",
+    "Leaning": "Unknown"
+  },
+  {
+    "Source": "The Brookings Institution",
+    "Link": "https://www.brookings.edu/topic/international-affairs/feed/",
+    "Topic": "World News",
+    "Leaning": "Academic"
+  },
+  {
+    "Source": "The Brookings Institution",
+    "Link": "https://www.brookings.edu/topic/technology-innovation/",
+    "Topic": "Technology",
+    "Leaning": "Academic"
+  },
+  {
+    "Source": "The Brookings Institution",
+    "Link": "https://www.brookings.edu/topic/economic-development/",
+    "Topic": "Economy",
+    "Leaning": "Academic"
+  },
+  {
+    "Source": "Foreign Policy Research Institute",
+    "Link": "https://www.fpri.org/feed/",
+    "Topic": "World News",
+    "Leaning": "Academic"
+  }
+]

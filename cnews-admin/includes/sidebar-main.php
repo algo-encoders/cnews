@@ -27,9 +27,17 @@
 
         <ul class="list-unstyled">
 
-            <li><a href="#reader_drop_down" class="<?php echo $current_route == 'news-reader' ? '' : 'collapsed'; ?>" aria-expanded="<?php echo $current_route == 'news-reader' ? 'true' : 'false'; ?>" data-toggle="collapse"> <i class="icon-windows"></i>Reader Tools</a>
-                <ul id="reader_drop_down" class="collapse list-unstyled <?php echo $current_route == 'news-reader' ? 'show' : ''; ?>">
-                    <li class="<?php echo $current_route == 'news-reader' ? 'text-primary' : ''; ?>">
+            <?php
+
+                $is_sub = false;
+                $is_sub = isset($_GET['saved_news']) || isset($_GET['send_news']);
+                $open = $current_route == 'rss';
+
+            ?>
+
+            <li><a href="#reader_drop_down" class="<?php echo $current_route == 'news-reader' || $open ? '' : 'collapsed'; ?>" aria-expanded="<?php echo $current_route == 'news-reader' || $open ? 'true' : 'false'; ?>" data-toggle="collapse"> <i class="icon-windows"></i>Reader Tools</a>
+                <ul id="reader_drop_down" class="collapse list-unstyled <?php echo $current_route == 'news-reader' || $open ? 'show' : ''; ?>">
+                    <li class="<?php echo $current_route == 'news-reader' && !$is_sub ? 'text-primary' : ''; ?>">
                         <a href="/news-reader">News Reader</a>
                     </li>
                     <li class="<?php echo $current_route == 'news-reader' && isset($_GET['saved_news']) ? 'text-primary' : ''; ?>">
@@ -37,6 +45,9 @@
                     </li>
                     <li class="<?php echo $current_route == 'news-reader' && isset($_GET['send_news']) ? 'text-primary' : ''; ?>">
                         <a href="/news-reader?send_news=true">Send News</a>
+                    </li>
+                    <li class="<?php echo $current_route == 'rss' ? 'text-primary' : ''; ?>">
+                        <a href="/rss">RSS News</a>
                     </li>
                 </ul>
             </li>

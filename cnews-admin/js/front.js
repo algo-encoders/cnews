@@ -306,6 +306,85 @@ $(function () {
 
 //    Reader
 
+    $('.filter_news').on('click', function (e){
+        e.preventDefault();
+
+        let category = $('.filtered_categories');
+        console.log(category);
+        let current_url = new URL(window.location.href);
+        current_url.searchParams.set('filter_category', category.val());
+        if(category.val() > 0){
+            window.location.href = current_url.href;
+        }
+    });
+
+    $('select.rss_filter').on('change', function (){
+       let all_rss = $('select.rss_filter');
+
+       var is_active = false;
+
+       let filter_btn = all_rss.parents('form:first').find('button');
+
+       $.each(all_rss, function (){
+           let this_filter_val = $(this).val();
+
+           if(this_filter_val && !is_active){
+               is_active = true;
+           }
+       });
+
+        filter_btn.prop('disabled', !is_active);
+
+    });
+
+    var loading_rss = false;
+
+    $('select.rss_filter').change();
+
+    function load_rss_field(){
+        let rss_container = $('.rss-container');
+        let url = new URL(window.location.href);
+        let topics = url.searchParams.get('filter_Topic');
+        let source = url.searchParams.get('filter_Source');
+        let leaning = url.searchParams.get('filter_Leaning');
+        let loading_row = $('.rss_loading_row');
+        let current_page = loading_row.data('current');
+        let next_page = current_page + 1;
+        let total_pages = loading_row.data('total_pages');
+
+        if(!loading_rss && next_page <= total_pages){
+            let data = {
+                cnews_ajax_action: 'load_more_rss',
+                'filter_Topics' : topics,
+                'filter_Source' : source,
+                'filter_Leaning' : leaning,
+                'offset': next_page
+            }
+
+            loading_rss = true;
+            loading_row.removeClass('d-none');
+
+            $.post('/ajax-admin', data, function(resp, code){
+                loading_row.addClass('d-none');
+                loading_rss = false;
+                if(code == 'success', resp.html){
+                    rss_container.append(resp.html);
+                    loading_row.data('current', next_page);
+                }
+            });
+
+        }
+
+
+
+    }
+
+    $(window).on('scroll',function(){
+        if(($(window).scrollTop() == $(document).height() - $(window).height())){
+            load_rss_field();
+        }
+    });
+
     $('.reader_share_news').on('click', function(e){
         e.preventDefault();
 

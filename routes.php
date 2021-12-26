@@ -96,6 +96,7 @@ post('/payments', 'cnews-admin/author/payments.php');
 
 
 get('/news-reader', 'sub-project/view/reader.php');
+get('/rss', 'sub-project/view/rss.php');
 get('/single-news/$news_slug', 'sub-project/view/single-news.php');
 
 

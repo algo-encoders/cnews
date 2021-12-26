@@ -18,39 +18,15 @@ cnews_admin_header_add();
 
 Category::post_category();
 
-$cat_list = MDB()->query("SELECT * FROM category ORDER BY parent ASC");
 
-$cat_list_parent = array();
+
+
 $cat_posted_data = CNotices::get_cat_posted();
 
 $is_edit = cnews_get_value('ID', $cat_posted_data) > 0;
 $edit_id = cnews_get_value('ID', $cat_posted_data);
+$cat_list_parent = Category::get_categories_parent();
 
-if(!empty($cat_list)){
-
-    foreach($cat_list as $cat){
-        if($cat['parent'] > 0){
-            break;
-        }
-
-        $cat_parent = $cat;
-
-        $sub_cats = array_filter($cat_list, function($cat) use ($cat_parent){
-
-            if($cat['parent'] == $cat_parent['ID']){
-                return $cat;
-            }
-
-        });
-
-        $sub_cats = array_values($sub_cats);
-
-        $cat_parent['child'] = $sub_cats;
-
-        $cat_list_parent[] = $cat_parent;
-    }
-
-}
 
 ?>
 
